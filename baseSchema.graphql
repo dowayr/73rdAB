@@ -1,0 +1,52 @@
+
+type Soldier {
+    id: ID!
+    username: String;
+    role: Role
+    firstname: String; 
+    lastname: String; 
+    middleInitial: String; 
+    startDate: String;
+    rank: String; 
+}
+
+enum Role {
+    Soldier
+    SquadLeader
+    TeamLeader
+    FirstSargent
+    Commander
+}
+
+type RequstForAbsenseForm {
+    id: ID!
+    soldier: Soldier; # May be best to add soldier id instead of duplicate soldier object. 
+    dateOfRequest: String; 
+    assemblies: [Assembly];
+    reason: String;
+    rescheduleAvailability: [String];
+    approvalSatus: [ApprovalSatus]; 
+}
+type ApprovalSatus{
+    soldier: Soldier; 
+    ApprovalState: ApprovalState;
+    comments: [String]
+    date: String;
+    signature: String; 
+}
+
+enum ApprovalState {
+    authorized
+    rescheduled
+    unexcused
+    approved 
+    denied
+}
+type Assembly {
+    id: ID!
+    startDate: String; 
+    startTime: String;
+
+}
+
+
